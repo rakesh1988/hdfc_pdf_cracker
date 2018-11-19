@@ -27,7 +27,7 @@ def decryptFile(customerId):
 			output.write(outputStream)
 			outputStream.close()
 			print ("Decoded password is " + str(customerId))
-			break
+			sys.exit(1)
 	except pypdf.utils.PdfReadError:
 		pass
 
