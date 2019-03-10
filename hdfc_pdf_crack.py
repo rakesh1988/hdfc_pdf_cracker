@@ -19,7 +19,7 @@ output = pypdf.PdfFileWriter()
 
 def decryptFile(customerId):
 	# if(customerId%1000==0):
-	# 	print(customerId)
+	#  	print(customerId)
 	try:
 		inputFile.decrypt(str(customerId)) #if this fails goes to except
 		for pageNumber in range (0, inputFile.getNumPages()):
@@ -41,10 +41,20 @@ def dateGenerator(year: str):
 	startDate = datetime.strptime("01/01/"+str(year),"%d/%m/%Y")
 	for x in range(366):
 		startDate = startDate + timedelta(days=1)
-		decryptFile(startDate.strftime("%d%m%Y"))	
+		decryptFile(startDate.strftime("%d%m%Y"))
 
-p1 = dateGenerator(1988)
-#rocess(target=looper, args=(0,9999))
+def ddmmGenerator(prefix = "", postfix = ""):
+	startDate = datetime.strptime("01/01/2000","%d/%m/%Y") #2000 just because we have leap year
+	for x in range(366):
+		startDate = startDate + timedelta(days=1)
+		decryptFile(prefix+startDate.strftime("%d%m")+postfix)
+		#print(prefix+startDate.strftime("%d%m")+postfix)
+
+ddmmGenerator("rupa")
+
+
+#p1 = dateGenerator(1988)
+#Process(target=looper, args=(0,9999))
 # p2 = Process(target=looper, args=(20000000,30000000))
 # p3 = Process(target=looper, args=(30000000,40000000))
 # p4 = Process(target=looper, args=(40000000,50000000))
@@ -55,7 +65,7 @@ p1 = dateGenerator(1988)
 # p9 = Process(target=looper, args=(90000000,100000000))
 
 
-p1.start()
+# p1.start()
 # p2.start()
 # p3.start()
 # p4.start()
@@ -65,8 +75,7 @@ p1.start()
 # p8.start()
 # p9.start()
 
-
-p1.join()
+# p1.join()
 # p2.join()
 # p3.join()
 # p4.join()
@@ -75,6 +84,5 @@ p1.join()
 # p7.join()
 # p8.join()
 # p9.join()
-
 
 print("done")
